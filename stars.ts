@@ -1,5 +1,7 @@
 const STAR_DENCIETY = 2000; // 1 star per 1000 square pixels
 
+const colors = ["#8d2eff", "#feb148", , "#1facfc", "#ffffff"]
+
 class StarDrawer {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
@@ -47,8 +49,8 @@ class Star {
         // generate star
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight;
-        this.size = Math.random() * 1;
-        this.color = "#ffffff";
+        this.size = 1 + Math.random() * 1;
+        this.color = random_item(colors) as string;
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
@@ -72,4 +74,9 @@ window.onresize = () => {
     if (width == window.innerWidth) return;
     width = window.innerWidth;
     starDrawer.resize()
+}
+
+function random_item(items)
+{
+return items[Math.floor(Math.random()*items.length)];    
 }

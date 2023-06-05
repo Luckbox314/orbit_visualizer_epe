@@ -1,4 +1,5 @@
 var STAR_DENCIETY = 2000; // 1 star per 1000 square pixels
+var colors = ["#8d2eff", "#feb148", , "#1facfc", "#ffffff"];
 var StarDrawer = /** @class */ (function () {
     function StarDrawer() {
         this.stars = [];
@@ -37,8 +38,8 @@ var Star = /** @class */ (function () {
         // generate star
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight;
-        this.size = Math.random() * 1;
-        this.color = "#ffffff";
+        this.size = 1 + Math.random() * 1;
+        this.color = random_item(colors);
     }
     Star.prototype.draw = function (ctx) {
         ctx.beginPath();
@@ -60,4 +61,7 @@ window.onresize = function () {
     width = window.innerWidth;
     starDrawer.resize();
 };
+function random_item(items) {
+    return items[Math.floor(Math.random() * items.length)];
+}
 //# sourceMappingURL=stars.js.map
