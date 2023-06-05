@@ -27,21 +27,87 @@ var StarDrawer = /** @class */ (function () {
         this.drawStars();
     };
     StarDrawer.prototype.generateStars = function () {
+        var outCanvas = document.getElementById("canvas");
         for (var i = 0; i < this.canvas.height * this.canvas.width / STAR_DENCIETY; i++) {
-            this.stars.push(new Star());
+            var position = { x: Math.random() * this.canvas.width, y: Math.random() * this.canvas.height };
+            var size = 0.5 + 3 * Math.pow(Math.random(), 6);
+            var color = random_item(colors);
+            // this.exclusionZoneFilter(position, size, color,  outCanvas)
+            this.stars.push(new Star(position, size, color));
+        }
+    };
+    StarDrawer.prototype.exclusionZoneFilter = function (position, size, color, targetCanvas) {
+        if (size < 3 && color !== "#ffffff") {
+            return;
+        }
+        // delete big stars from exclusion zone
+        var dimentions = targetCanvas.getBoundingClientRect();
+        // draw exclusion zone for debug
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = "#ff0000";
+        this.ctx.rect(dimentions.x, dimentions.y, dimentions.width, dimentions.height);
+        this.ctx.stroke();
+        if (position.x > dimentions.x && position.x < dimentions.x + dimentions.width && position.y > dimentions.y && position.y < dimentions.y + dimentions.height) {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = "#0000ff";
+            this.ctx.rect(position.x - 20, position.y - 20, 40, 40);
+            this.ctx.stroke();
         }
     };
     return StarDrawer;
 }());
 var Star = /** @class */ (function () {
-    function Star() {
+    function Star(position, size, color) {
         // generate star
-        this.x = Math.random() * window.innerWidth;
-        this.y = Math.random() * window.innerHeight;
-        this.size = 1 + Math.random() * 1;
-        this.color = random_item(colors);
+        this.x = position.x;
+        this.y = position.y;
+        this.size = size;
+        this.color = color;
     }
     Star.prototype.draw = function (ctx) {
+        var whiteFilter = 0.5001;
+        if (this.color == "#ffffff" && this.size > whiteFilter) {
+            this.color = random_item(colors.filter(function (e) { return e !== "#ffffff"; }));
+        }
+        if (this.color == "#ffffff") {
+            this.drawStarShape(ctx);
+        }
+        else if (this.size > 3) {
+            this.drawDoubleRing(ctx);
+        }
+        else {
+            this.drawRing(ctx);
+        }
+    };
+    Star.prototype.drawStarShape = function (ctx) {
+        this.size = 10 + 8 * Math.pow(Math.random(), 16);
+        ;
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.arc(this.x - this.size / 2, this.y - this.size / 2, this.size / 2, 0 * Math.PI, 0.5 * Math.PI);
+        ctx.arc(this.x - this.size / 2, this.y + this.size / 2, this.size / 2, 1.5 * Math.PI, 2 * Math.PI);
+        ctx.arc(this.x + this.size / 2, this.y + this.size / 2, this.size / 2, 1 * Math.PI, 1.5 * Math.PI);
+        ctx.arc(this.x + this.size / 2, this.y - this.size / 2, this.size / 2, 0.5 * Math.PI, 1 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    };
+    Star.prototype.drawDoubleRing = function (ctx) {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.size * 1.8, 0, 2 * Math.PI);
+        ctx.fill();
+        if (this.color === "#ffffff") {
+            ctx.fillStyle = "#feb148";
+        }
+        else {
+            ctx.fillStyle = "#ffffff";
+        }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        ctx.fill();
+    };
+    Star.prototype.drawRing = function (ctx) {
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);

@@ -33,8 +33,36 @@ class StarDrawer {
     }
 
     private generateStars() {
+        const outCanvas = document.getElementById("canvas") as HTMLCanvasElement;
+
         for (let i = 0; i < this.canvas.height * this.canvas.width /  STAR_DENCIETY; i++) {
-            this.stars.push(new Star());
+            const position = {x: Math.random() * this.canvas.width, y: Math.random() * this.canvas.height};
+            const size = 0.5 + 3 * Math.random() ** 6;
+            let  color = random_item(colors) as string
+            // this.exclusionZoneFilter(position, size, color,  outCanvas)
+            this.stars.push(new Star(position, size, color));
+        }
+    }
+
+    private exclusionZoneFilter(position: {x: number, y: number}, size: number, color: string, targetCanvas : HTMLCanvasElement) {
+
+        if (size < 3 && color !== "#ffffff") {
+            return;
+        }
+        // delete big stars from exclusion zone
+        const dimentions = targetCanvas.getBoundingClientRect() as DOMRect;
+        
+        // draw exclusion zone for debug
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = "#ff0000";
+        this.ctx.rect(dimentions.x, dimentions.y, dimentions.width, dimentions.height);
+        this.ctx.stroke();
+
+        if (position.x > dimentions.x && position.x < dimentions.x + dimentions.width && position.y > dimentions.y && position.y < dimentions.y + dimentions.height) {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = "#0000ff";
+            this.ctx.rect(position.x - 20, position.y - 20, 40, 40);
+            this.ctx.stroke();
         }
     }
     
@@ -45,21 +73,69 @@ class Star {
     private y: number;
     private size: number;
     private color: string;
-    constructor() {
+    constructor(position: {x: number, y: number}, size: number, color: string) {
         // generate star
-        this.x = Math.random() * window.innerWidth;
-        this.y = Math.random() * window.innerHeight;
-        this.size = 1 + Math.random() * 1;
-        this.color = random_item(colors) as string;
+        this.x = position.x;
+        this.y = position.y;
+        this.size = size
+        this.color = color;
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
+        const whiteFilter = 0.5001;
+
+        if (this.color == "#ffffff" && this.size > whiteFilter) {
+            this.color = random_item(colors.filter(e => e !== "#ffffff")) as string;
+        }
+        
+        if (this.color == "#ffffff") {
+            this.drawStarShape(ctx);
+        }
+        else if (this.size > 3) {
+            this.drawDoubleRing(ctx);
+        }
+        else {
+            this.drawRing(ctx);
+        }
+    }
+
+    private drawStarShape(ctx: CanvasRenderingContext2D) {
+        this.size = 10 + 8 * Math.random() ** 16;;
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.arc(this.x - this.size/2, this.y - this.size/2, this.size/2, 0 * Math.PI, 0.5 * Math.PI);
+        ctx.arc(this.x - this.size/2, this.y + this.size/2, this.size/2, 1.5* Math.PI, 2 * Math.PI);
+        ctx.arc(this.x + this.size/2, this.y + this.size/2, this.size/2, 1* Math.PI, 1.5 * Math.PI,);
+        ctx.arc(this.x + this.size/2, this.y - this.size/2, this.size/2, 0.5* Math.PI, 1 * Math.PI,)
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    private drawDoubleRing(ctx : CanvasRenderingContext2D) {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.size*1.8, 0, 2 * Math.PI);
+        ctx.fill();
+
+        if (this.color === "#ffffff") {
+            ctx.fillStyle = "#feb148";
+        } else {
+            ctx.fillStyle = "#ffffff";
+        }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    private drawRing(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.fill();
     }
+
 
 }
 
