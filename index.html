@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de orbitas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- <canvas id="debug-canvas" width="500" height="500">
+        </canvas> -->
+        <canvas id="canvas">
+        </canvas>
+        <div class="parameters">
+            <div class="input-bar">
+                <p>Razón de masas <span id="mass-display">1 : 1.00</span> <img id= "mass-btn" class="info" src="sprites/info.svg" height="20px" style="margin: 0 3px -3px;"/></p> 
+                <input type="range" min="-49" max="0" value="0" class="slider" id="mass-slider">
+                <div style="display: none;" class="pop-up" id="mass-info">La razón de masa es la proporción entre la masa del planeta más ligero y el más pesado. Por ejemplo, si la proporción es de 1:50, entonces el planeta rojo tiene 50 veces la masa del planeta azul.</div>
+            </div>
+            <div class="input-bar">
+                <p>Excentricidad <span id="excentricity-display">0.50</span> <img id= "excentricity-btn" class="info" src="sprites/info.svg" height="20px" style="margin: 0 3px -3px;"/></p>
+                <input type="range" min="0" max="0.9" value="0.50" step="0.05" class="slider" id="excentricity-slider">
+                <progress value="0.5" max="0.9" id="excentricity-progress"></progress>
+                <div style="display: none;" class="pop-up" id="excentricity-info"> 
+                    La excentricidad de una órbita es una medida de qué tan alargada o estirada es la forma de la órbita. Es una cantidad adimensional que varía de 0 a 1, donde 0 representa un círculo perfecto y 1 representa una línea recta.
+                </div>
+            </div>
+            <div class="input-bar">
+                <p>Semi-eje mayor <span id="semimajor-display">230</span> <img id= "semimajor-btn" class="info" src="sprites/info.svg" height="20px" style="margin: 0 3px -3px;"/></p>
+                <input type="range" min="100" max="300" value="230" class="slider" id="semimajor-slider">
+                <div style="display: none;" class="pop-up" id="semimajor-info"> El semieje mayor determina el período de la órbita, así como la forma y el tamaño general de la elipse. En este caso, afecta la forma de la órbita del planeta azul. Corresponde a la distancia desde el centro de la órbita hasta el punto más alejado.</div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="stars.js"></script>
+    <script src="popup.js"></script>
+    <footer>
+        <a target='_blank' href="https://github.com/Luckbox314/orbit_visualizer"><img className="socialMediaLogo" src="sprites/github.svg" alt='GitHub' height="40"/></a>
+        <a target='_blank' href="https://luckbox314.github.io/luckbox314/"> Luckbox</a>
+      </footer>
+</body>
+
+</html>
