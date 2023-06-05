@@ -226,26 +226,32 @@ function main() {
     var orbitVisualizer = new OrbitVisualizer();
     var massSlider = document.getElementById("mass-slider");
     var massDisplay = document.getElementById("mass-display");
+    var massProgress = document.getElementById("mass-progress");
     massSlider.oninput = function () {
         var mass = parseFloat(massSlider.value);
         orbitVisualizer.setMassRatio(mass);
         var ration1 = 1;
         var ration2 = (50 - mass) / (50 + mass);
         massDisplay.innerText = ration1 + " : " + ration2.toFixed(2);
+        massProgress.style.width = 100 - (-mass / 49 * 80 + 10) + "%";
     };
     var excentricitySlider = document.getElementById("excentricity-slider");
     var excentricityDisplay = document.getElementById("excentricity-display");
+    var excentricityProgress = document.getElementById("excentricity-progress");
     excentricitySlider.oninput = function () {
         var excentricity = parseFloat(excentricitySlider.value);
         orbitVisualizer.setExcentricity(excentricity);
         excentricityDisplay.innerText = excentricity.toFixed(2);
+        excentricityProgress.style.width = excentricity / 0.9 * 80 + 10 + "%";
     };
     var semiMajorAxisSlider = document.getElementById("semimajor-slider");
     var semiMayorAxisDisplay = document.getElementById("semimajor-display");
+    var semimajorProgress = document.getElementById("semimajor-progress");
     semiMajorAxisSlider.oninput = function () {
         var semiMajorAxis = parseFloat(semiMajorAxisSlider.value);
         orbitVisualizer.setSemiMajorAxis(semiMajorAxis);
         semiMayorAxisDisplay.innerText = semiMajorAxis.toFixed();
+        semimajorProgress.style.width = (semiMajorAxis - 100) / 200 * 80 + 10 + "%";
     };
 }
 window.addEventListener("load", function () { console.log("loaded"); main(); });

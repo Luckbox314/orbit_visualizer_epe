@@ -311,28 +311,34 @@ function main()
     const orbitVisualizer = new OrbitVisualizer();
     const massSlider = document.getElementById("mass-slider") as HTMLInputElement;
     const massDisplay = document.getElementById("mass-display") as HTMLSpanElement;
+    const massProgress = document.getElementById("mass-progress") as HTMLSpanElement;
     massSlider.oninput = () => {
         const mass = parseFloat(massSlider.value);
         orbitVisualizer.setMassRatio(mass);
         const ration1 =  1 ;
         const ration2 = ( 50 - mass) / (50 + mass) ;
         massDisplay.innerText = ration1+ " : " + ration2.toFixed(2);
+        massProgress.style.width = 100 - (-mass/49 * 80 + 10) + "%";
     }
 
     const excentricitySlider = document.getElementById("excentricity-slider") as HTMLInputElement;
     const excentricityDisplay = document.getElementById("excentricity-display") as HTMLSpanElement;
+    const excentricityProgress = document.getElementById("excentricity-progress") as HTMLSpanElement;
     excentricitySlider.oninput = () => {
         const excentricity = parseFloat(excentricitySlider.value);
         orbitVisualizer.setExcentricity(excentricity);
         excentricityDisplay.innerText = excentricity.toFixed(2);
+        excentricityProgress.style.width = excentricity/0.9 * 80 + 10 + "%";
     }
 
     const semiMajorAxisSlider = document.getElementById("semimajor-slider") as HTMLInputElement;
     const semiMayorAxisDisplay = document.getElementById("semimajor-display") as HTMLSpanElement;
+    const semimajorProgress = document.getElementById("semimajor-progress") as HTMLSpanElement;
     semiMajorAxisSlider.oninput = () => {
         const semiMajorAxis = parseFloat(semiMajorAxisSlider.value);
         orbitVisualizer.setSemiMajorAxis(semiMajorAxis);
         semiMayorAxisDisplay.innerText = semiMajorAxis.toFixed();
+        semimajorProgress.style.width = (semiMajorAxis - 100 )/200 * 80 + 10 + "%";
     }
 }
 
