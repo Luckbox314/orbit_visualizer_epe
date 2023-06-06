@@ -10,7 +10,7 @@ Original idea by [elplanetaerrante](https://www.instagram.com/elplanetaerrante/)
 
 First prototype
 
-![Prototype 2](img/prototype1.png)
+![Prototype 2](img/prototype2.png)
 
 Seccond prototype
 
