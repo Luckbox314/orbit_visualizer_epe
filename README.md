@@ -20,8 +20,6 @@ Current version
 
 [Prototype here](https://luckbox314.github.io/orbit_visualizer/)
 
-[Source code here](https://github.com/Luckbox314/orbit_visualizer)
-
 # Details to add
 
 - [x]  Change the color of the barycenter to better differentiate it from the stars.
