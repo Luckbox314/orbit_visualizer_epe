@@ -87,7 +87,6 @@ body {
   a {
     text-decoration: none;
     margin: 0 5px;
-    font-size: large;
     text-decoration: none;
     color: white;
 }
@@ -147,6 +146,24 @@ body {
   z-index: -1;
   border-radius: 50vi;
   background-color: white;
+}
+
+footer {
+  font-size: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > a {
+    margin: 5px 5px;
+    text-decoration: none;
+    text-decoration: underline;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+  }
+  > a:hover {
+    opacity: 1;
+  }
 }
 
   
