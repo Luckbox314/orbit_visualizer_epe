@@ -58,7 +58,7 @@ body {
     -webkit-appearance: none;
     appearance: none;
     width: 50px;
-    aspect-ratio: 1;
+    height: 50px;
     border-radius: 50%;
     border: #1aacfe solid 15px;
     background: white;
@@ -67,7 +67,7 @@ body {
   
   .slider::-moz-range-thumb {
     width: 50px;
-    aspect-ratio: 1;
+    height: 50px;
     border-radius: 50%;
     border: #1aacfe solid 15px;
     background: white;
