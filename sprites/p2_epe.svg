@@ -1,0 +1,21 @@
+<svg width="139" height="139" viewBox="0 0 139 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="73" cy="63" r="62" fill="#FFD350"/>
+<path d="M128 66C128 95.2711 103.152 119 72.5 119C41.8482 119 17 95.2711 17 66" stroke="#FFEAC1" stroke-width="13" stroke-linecap="round"/>
+<path d="M80.2338 8C110.599 12.1836 131.976 39.0819 127.981 68.0791" stroke="#FFEAC1" stroke-width="13" stroke-linecap="round"/>
+<path d="M128.089 57C131.812 87.4248 110.167 115.107 79.7417 118.831" stroke="#FECC84" stroke-width="13" stroke-linecap="round"/>
+<path d="M69 7.51692C99.1522 5.05479 125.618 27.8246 128.112 58.3747" stroke="#FECC84" stroke-width="13" stroke-linecap="round"/>
+<path d="M123 87C118 98 111 107 98 113" stroke="#FEE6C9" stroke-width="14" stroke-linecap="round"/>
+<path d="M27.5 96C19.294 84 14.5 70.5 19.294 50" stroke="white" stroke-width="14" stroke-linecap="round"/>
+<path d="M33.5 24.5C36.5 21.5 41.5 17.5 45 15.5" stroke="white" stroke-width="14" stroke-linecap="round"/>
+<path d="M111.5 23.5C120.5 32.5 127.5 45 128 59.5" stroke="#FEE6C9" stroke-width="14" stroke-linecap="round"/>
+<circle cx="73" cy="63" r="50" fill="#FAC34D"/>
+<path d="M73 64.5C73 92.1142 73 113 73 113C45.3858 113 23 90.6142 23 63C23 35.3858 45.3858 13 73 13C73 13 73 36.8858 73 64.5Z" fill="#FFD550"/>
+<ellipse cx="73" cy="63" rx="27" ry="50" fill="#FFD550"/>
+<ellipse cx="99.5" cy="63.5" rx="15.5" ry="19.5" fill="#FCAA4F"/>
+<ellipse cx="66" cy="43.9082" rx="10.2868" ry="12.5266" transform="rotate(-28.3376 66 43.9082)" fill="#FFBF50"/>
+<ellipse cx="34.0269" cy="39.2313" rx="5.67089" ry="9.70712" transform="rotate(32.8188 34.0269 39.2313)" fill="#FFBF50"/>
+<ellipse cx="60.673" cy="89.9429" rx="17.2399" ry="17.9054" transform="rotate(-28.3376 60.673 89.9429)" fill="#FFBF50"/>
+<ellipse cx="59.618" cy="91.6432" rx="11.4855" ry="12.5266" transform="rotate(-28.3376 59.618 91.6432)" fill="#FCAA4F"/>
+<ellipse cx="9.80229" cy="12.4436" rx="9.80229" ry="12.4436" transform="matrix(0.993324 -0.115359 0.202872 0.979205 17.5712 59.6926)" fill="#FFBF50"/>
+<ellipse cx="6.50058" cy="9.38652" rx="6.50058" ry="9.38652" transform="matrix(0.993324 -0.115359 0.202872 0.979205 20.0875 62.0035)" fill="#FCAA4F"/>
+</svg>

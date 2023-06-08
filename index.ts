@@ -1,9 +1,9 @@
 const planet1_image = new Image();
-planet1_image.src = "sprites/p1.svg";
+planet1_image.src = "sprites/p1_epe.svg";
 const planet2_image = new Image();
-planet2_image.src = "sprites/p2.svg";
+planet2_image.src = "sprites/p2_epe.svg";
 
-const MASS_SIZE_RATIO = 400;
+const MASS_SIZE_RATIO = 4000;
 const OBJECTIVE_ORBITAL_PERIOD = 5;
 const GRAVITATIONAL_CONSTANT = 1;
 const AREA_STEPS = 200;
@@ -50,7 +50,7 @@ class OrbitVisualizer {
         this.ctx = ctx;
         this.ctx.lineWidth = 6;
         this.orbitColor = "#625d80";
-        this.baricenterColor = "#9acea4";
+        this.baricenterColor = "#51a9f7";
 
 
         // this.debugCanvas = document.getElementById('debug-canvas') as HTMLCanvasElement;
@@ -208,11 +208,12 @@ class OrbitVisualizer {
     private draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         // draw bari center
-        this.ctx.strokeStyle = this.baricenterColor;
+        this.ctx.strokeStyle = "#ffffff";
         this.ctx.fillStyle = this.baricenterColor;
+        this.ctx.lineWidth = 10;
 
         this.ctx.beginPath();
-        this.ctx.arc(this.barycenter.x, this.barycenter.y, 5, 0, 2 * Math.PI);
+        this.ctx.arc(this.barycenter.x, this.barycenter.y, 8, 0, 2 * Math.PI);
         this.ctx.stroke();
         this.ctx.fill();
 
