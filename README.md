@@ -32,17 +32,17 @@ Current version
 
 # Simulation
 
-The process of simulating the two body problem in real time with the mass ratio, excentricity and semi-major axis as parameters was not an easy task. Fortunatelly I was able to come with a solution to do this, that works well enough to give an aqurate representation of the orbits in real time.
+The process of simulating the two-body problem in real time with the mass ratio, eccentricity, and semi-major axis as parameters was not an easy task. Fortunately, I was able to come up with a solution that works well enough to give an accurate representation of the orbits in real time.
 
-The orbit of the blue planet is created based on it’s excentricity and semi-mayor axis. It’s right foci is centered in the canvas. This foci will become the baricenter later.
+The orbit of the first planet is created based on it’s eccentricity and semi-major axis. It’s right focus is centered in the canvas. This focus will become the barycenter later.
 
-While the orbit itself is easy to create, ensuring that the planet moves at the right speed at each time is not. For this we need the funtion $r(t)$ (position based on time).
+While the orbit itself is easy to create, ensuring that the planet moves at the correct speed at each point in time is not. For this, we need the function $r(t)$ (position based on time).
 The [Law of Areas](http://hyperphysics.phy-astr.gsu.edu/hbase/kepler.html#c5) becomes important now.
 
 > A line that connects a planet to the sun sweeps out equal areas in equal times.
 > 
 
-Adapting it to a two body problem where the center is not the sun but the baricenter. With this we know that $t(A)$ is linear (time based on area swept) so it’s enough to get an $r(A)$ (time based on the area) to get a propper scale of time for our position.
+Adapting it to a two-body problem where the center is not the sun but the barycenter. With this, we know that $t(A)$ is linear (time based on area swept) so it’s enough to get an $r(A)$ (position based on the area) to get a proper scale of time for our position.
 
 Since we know the position based on an angle:
 
@@ -51,13 +51,13 @@ r(\theta) = \frac{a\cdot(1-e^2)}{1 + e \cdot \cos(\theta)}
 $$
 
 <aside>
-❓ this is the position in polar coordinates centered in the foci with $e$ the eccentricity and $a$ the semi mayor axis
+❓ this is the position in polar coordinates centered in the focus with $e$ the eccentricity and $a$ the semi-major axis
 
 </aside>
 
-If we can get the angle based on an area ($\theta(A)$) then we’ll have our $r(A)$
+If we can get the angle based on an area ($\theta(A)$) then we’ll have $r(A)$
 
-To calculate this we first can get $A(\theta)$ by integrating the radious over delta  $\theta$
+To calculate this we first can get $A(\theta)$ by integrating the radious over $\Delta\theta$
 
 $$
 A(\theta) = \int \frac{r(\theta)^2}{2}d\theta
@@ -67,16 +67,16 @@ $$
 A(\theta) = \frac{a^2(e^3 - e) \sin(\theta)}{2e\cos(\theta) + 2} + a^2\sqrt{1 - e}\sqrt{e + 1}  \cdot\arctan((\frac{\sqrt{1-e}}{\sqrt{e + 1}} \tan(\theta/2))
 $$
 
-Since getting the inverse of $A(\theta)$ is really complicated, we decided to use an empirical aproach. We subdivide the orbit in $n$ segments of equal angle. then we calculate the area of each angle with $A(\theta)$, then we use that to interpolate the angle for a given area. Let’s call this aproximation: $\theta_{A(\theta)}(A)$.
+Since getting the inverse of $A(\theta)$ is really complicated, I decided to use an empirical approach. In this approach we subdivide the orbit in $n$ segments of equal angle, then calculate the area of each angle with $A(\theta)$, and then use that to interpolate the angle for a given area. Let’s call this aproximation: $\theta_{A(\theta)}(A)$.
 
 With $\theta_{A(\theta)}(A)$ we can have an $r_{A(\theta)}(A)$ using $r(\theta_{A(\theta)}(A))$.
 
-With this we can calculate the position of the blue planet for any given area swept, now we just animate the area going from 0% of the elipse to 100% in a linear manner and we get a proportional movement for the planet.
+With this we can calculate the position of the first planet for any given area swept. Now we just animate the area going from 0% of the ellipse to 100% in a linear manner, and we get the corresponding movement of the planet.
 
-With the position of the blue planet, we can get the position of the red planet by simply using the fact that the center of mass of both will stay at the baricenter.
+With the position of the first planet, we can get the position of the second planet by simply using the fact that the center of mass of both will stay at the barycenter.
 
 $$
-pos_{red} = baricenter - r_{A(\theta)}(A)\frac{m_{blue}}{m_{red}}
+pos_{second} = barycenter - r_{A(\theta)}(A)\frac{m_{first}}{m_{second}}
 $$
 
-Thanks to that we can know the position of the two planets at any time based on the semi mayor axis and the eccentricity. The mass ratio between the planets comes into play because it dictates the semi mayor axis of the orbit used to calculate the orbital period.
+Thanks to this, we can know the position of the two planets at any time based on the semi-major axis and the eccentricity. The mass ratio between the planets comes into play because it dictates the semi-major axis of the orbit used to calculate the orbital period.
